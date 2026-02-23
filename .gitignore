@@ -1,0 +1,9 @@
+# PyCharm
+.idea/
+
+# Output artifacts
+output/*.pkl
+output/*.json
+
+# Python cache
+__pycache__/
