@@ -22,9 +22,11 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
 print("MSE:", mse)
+
 print("R2 Score:", r2)
 
 joblib.dump(model, "output/model.pkl")
+
 json.dump(
     {"experiment": "EXP-08", "model": "RF(70-30)", "mse": mse, "r2_score": r2},
     open("output/results.json", "w"), indent=4
