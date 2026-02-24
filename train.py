@@ -6,16 +6,11 @@ from sklearn.metrics import mean_squared_error, r2_score
 os.makedirs("output", exist_ok=True)
 
 df = pd.read_csv("dataset/winequality-red.csv", sep=";")
-
-selected_features = [
-    "alcohol", "sulphates", "citric acid", "volatile acidity"
-]
-
-X = df[selected_features]
+X = df.drop("quality", axis=1)
 y = df["quality"]
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X, y, test_size=0.3, random_state=42
 )
 
 model = RandomForestRegressor(n_estimators=100, random_state=42)
@@ -31,6 +26,6 @@ print("R2 Score:", r2)
 
 joblib.dump(model, "output/model.pkl")
 json.dump(
-    {"experiment": "EXP-07", "model": "RF(SelectedFeatures)", "mse": mse, "r2_score": r2},
+    {"experiment": "EXP-08", "model": "RF(70-30)", "mse": mse, "r2_score": r2},
     open("output/results.json", "w"), indent=4
 )
